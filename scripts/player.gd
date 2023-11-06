@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var speed :int = 300
+signal took_damage
+
+@export var speed :int = 350
 @onready var laser_container = $LaserContainer # a cena so podera carregar apos o lasercontainer carregar 
 
 var laser_scene :PackedScene = preload("res://scenes/laser.tscn")
@@ -31,5 +33,11 @@ func _physics_process(delta):
 		can_i_shoot = true
 	
 	var screen_size = get_viewport_rect().size # posiçao maxima onde o player pode ir
-	var min_vector_position = Vector2.ZERO # posiçao minima onde pode ir
+	var min_vector_position = Vector2(0, 80) # posiçao minima onde pode ir (89 pixels de hud)
 	global_position = global_position.clamp(min_vector_position, screen_size) # clamp limita a area de movimentaçao
+
+func take_damage():
+	emit_signal("took_damage")
+
+func die():
+	queue_free()

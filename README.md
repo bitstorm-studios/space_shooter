@@ -13,4 +13,4 @@ Pasta onde estão armazenadas as cenas usadas no jogo
 Pasta onde estão os scripts necessários
 ## Ferramentas e versões utilizadas:
 * Godot Engine v4.0
-* GDscript
+* GDscript 2.0
