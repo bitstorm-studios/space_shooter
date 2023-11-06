@@ -23,6 +23,7 @@ func _on_spawn_container_spawn_enemy(enemy):
 	$SpawnContainer.add_child(enemy) # adiciona o inimigo gerado como no filho de spawn_container
 
 func on_give_points(points: int):
+	$HitSound.play()
 	player_points += points
 	ui.add_points(player_points)
 
@@ -31,6 +32,7 @@ func _on_player_took_damage():
 	ui.set_lifes(player_lifes)
 	if player_lifes == 0:
 		player.die()
+		$ExplodeSound.play()
 		var game_over_instance = game_over_scene.instantiate()
 		await get_tree().create_timer(0.5).timeout
 		game_over_instance.add_points(player_points)

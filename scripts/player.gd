@@ -28,7 +28,10 @@ func _physics_process(delta):
 		can_i_shoot = false # impede o proximo tiro
 		var laser_instance = laser_scene.instantiate() # instancia o tiro
 		laser_instance.global_position = Vector2(global_position.x + 20, global_position.y) #define a posiçao inicial do laser como a posiçao do player
+		
 		laser_container.add_child(laser_instance)
+		$LaserSound.play()
+		
 		await get_tree().create_timer(0.2).timeout # aguarda um pouco ate o proximo tiro ser liberado
 		can_i_shoot = true
 	
